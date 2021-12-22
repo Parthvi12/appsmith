@@ -8,9 +8,7 @@ on:
   push:
     branches: [release, release-frozen, master]
     paths:
-      - "app/client/**"
-      - "app/server/**"
-      - "app/rts/**"
+      - "app/client/cypress/integration/Smoke_TestSuite/ClientSideTests/LayoutValidation/AppPageLayout.spec.js"
       - "!app/client/cypress/manual_TestSuite/**"
 
 jobs:
@@ -264,6 +262,12 @@ jobs:
         with:
           name: rts-build
           path: app/rts/dist/
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: app/client/cypress/snapshots
 
       - name: Upload RTS dependencies bundle
         uses: actions/upload-artifact@v2
